@@ -25,14 +25,19 @@ node{
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
-      stage('Copy deploy file')
+      stage('Copy deployment file')
       {
          withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
-               //sh "sshpass -p ${k8PWD} ssh ubuntu@104.211.188.12"
                sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.188.12:/home/ubuntu"
          }
-       // sh 'scp deployment.yaml ./home/ubuntu'
       }
+      stage('Deploy')
+      {
+         def k8Apply= "kubectl apply -f deployment.yaml" 
+         withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
+               sh "sshpass -p ${k8PWD} ssh ubuntu@104.211.188.12 ${k8Apply}"           
+         }
+       }
       
     /*   stage('Copying Deployment yaml') {  
            def cmdTest='pwd'
