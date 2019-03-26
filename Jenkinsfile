@@ -26,18 +26,19 @@ node{
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
        stage('Copying Deployment yaml') {     
-           sshagent(['k8server']) {            
-               sh 'scp deployment.yaml ubuntu@104.211.188.12'         
+           sshagent(['k8server']) {  
+                 sh 'pwd'
+               //sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
       }
-      stage('Deploy'){        
+      /*stage('Deploy'){        
             //def dockerContainerName = 'javademo-$BUILD_NUMBER'
             def k8Apply= "kubectl apply -f deployment.yaml"         
             sshagent(['k8server']) { 
               sh "ssh ubuntu@104.211.188.12 ${k8Apply}"                   
          }
       }
-     
+     */
 
    /*stage('Stop running containers'){        
          def listContainer='sudo docker ps'
