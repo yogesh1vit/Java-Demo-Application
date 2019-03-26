@@ -25,6 +25,11 @@ node{
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
+      stage('Deploy') {     
+          sshagent(['k8server']) {            
+               sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@104.211.188.12'         
+           }
+     }
 
    /*stage('Stop running containers'){        
          def listContainer='sudo docker ps'
