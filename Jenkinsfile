@@ -28,7 +28,7 @@ node{
       stage('Copy deploy file')
       {
          withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
-               sh "sshpass -p ${k8PWD} ssh user@hostname"
+               sh "sshpass -p ${k8PWD} ssh ubuntu@104.211.188.12"
          }
         //sh 'scp deployment.yaml ./home/ubuntu'
       }
