@@ -1,22 +1,21 @@
 node{
       
       stage('Checkout'){
-         git 'https://github.com/rajnikhattarrsinha/java-tomcat-maven-example'
+         git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
       }
   
+      stage ('Test'){
+         def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'    
+         sh "${mvnHome}/bin/mvn verify; sleep 3"
+      }
       stage('Build'){
          // Get maven home path and build
          def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'   
          sh "${mvnHome}/bin/mvn package"
-      }
-      /*   
-      stage ('Test'){
-         def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'    
-         sh "${mvnHome}/bin/mvn verify; sleep 3"
-      }  
-   */
-    stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javademo:2.0.0 .'
+      }    
+      
+      stage('Build Docker Image'){
+         sh 'docker build -t rajnikhattarrsinha/javademoapp1:2.0.0 .'
       }  
    
       stage('Publish Docker Image')
@@ -24,10 +23,10 @@ node{
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/javademo:2.0.0'
+        sh 'docker push rajnikhattarrsinha/javademoapp1:2.0.0'
       }
 
-   stage('Stop running containers'){        
+   /*stage('Stop running containers'){        
          def listContainer='sudo docker ps'
          def scriptRunner='sudo ./stopscript.sh'
          def stopContainer='sudo docker stop $(docker ps -a -q)'
@@ -56,7 +55,7 @@ node{
                    
          }
    }
-   
+   */
    
    
 }
