@@ -25,7 +25,15 @@ node{
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
-       stage('Copying Deployment yaml') {  
+      stage('Copy deploy file')
+      {
+         withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
+              sh "ssh ubuntu@104.211.188.12 -p ${k8PWD}"
+         }
+        sh 'scp deployment.yaml ./home/ubuntu'
+      }
+      
+    /*   stage('Copying Deployment yaml') {  
            def cmdTest='pwd'
            //export SSHPASS='Alpha#757575'
            sshagent(['1022304b-5e99-420d-82de-677aaa255a08']) { 
@@ -34,7 +42,7 @@ node{
                  //sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${cmdTest}"
                //sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
-      }
+      }*/
       /*stage('Deploy'){        
             //def dockerContainerName = 'javademo-$BUILD_NUMBER'
             def k8Apply= "kubectl apply -f deployment.yaml"         
