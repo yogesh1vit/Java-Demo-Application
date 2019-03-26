@@ -7,31 +7,23 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>CICD Pipeline View</name>
-  <url>http://maven.apache.org</url>
-  
-	<dependencies>
+  <url>http://maven.apache.org</url>  
+ <dependencies>
     <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
     <scope>provided</scope>
     </dependency>
-    <!--<dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
--->
-   <dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
-  <build>
-    <finalName>demopipeline2503_5</finalName>
+ </dependencies>
+ <build>
+    <finalName>demopipeline2605</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
