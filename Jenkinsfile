@@ -26,11 +26,11 @@ node{
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
        stage('Copying Deployment yaml') {  
-           //def cmdTest='pwd'
+           def cmdTest='pwd'
            //export SSHPASS='Alpha#757575'
            sshagent(['1022304b-5e99-420d-82de-677aaa255a08']) { 
                  sh "export SSHPASS='Alpha#757575'"
-                 sh "sshpass -e ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12"
+                 sh "sshpass -e ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${cmdTest}"
                  //sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${cmdTest}"
                //sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
