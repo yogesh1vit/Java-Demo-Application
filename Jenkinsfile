@@ -15,7 +15,7 @@ node{
       }    
       
       stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javademoapp1:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/javademoapp2:2.0.0 .'
       }  
    
       stage('Publish Docker Image')
@@ -23,7 +23,7 @@ node{
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/javademoapp1:2.0.0'
+        sh 'docker push rajnikhattarrsinha/javademoapp2:2.0.0'
       }
 
    /*stage('Stop running containers'){        
