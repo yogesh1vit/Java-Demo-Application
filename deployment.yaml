@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rajni-deployment
-        image: rajnikhattarrsinha/javademoapp3
+        image: rajnikhattarrsinha/javademoapp3:1.0.0
         ports:
         - containerPort: 80
 ---
