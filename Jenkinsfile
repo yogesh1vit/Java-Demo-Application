@@ -25,21 +25,19 @@ node{
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
-       stage('Pull Docker Image and Deploy'){        
-            def dockerContainerName = 'javademo-$BUILD_NUMBER'
-            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademoapp3:1.0.0"         
-            sshagent(['k8server']) { 
-              sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${dockerRun}"
-                   
-         }
-      }
-      stage('Deploy') {     
-          //def dockerContainerName = 'javademo-$BUILD_NUMBER'
-          //def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademoapp3:1.0.0" 
-          sshagent(['k8server']) {            
-               sh 'scp -o StrictHostKeyChecking=no  ubuntu@104.211.188.12'         
+       stage('Copying Deployment yaml') {     
+           sshagent(['k8server']) {            
+               sh 'scp -o StrictHostKeyChecking=no deployment.yaml ubuntu@104.211.188.12'         
            }
       }
+      stage('Deploy'){        
+            //def dockerContainerName = 'javademo-$BUILD_NUMBER'
+            def k8Apply= "kubectl apply -f deployment-file-name.yaml"         
+            sshagent(['k8server']) { 
+              sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${k8Apply}"                   
+         }
+      }
+     
 
    /*stage('Stop running containers'){        
          def listContainer='sudo docker ps'
