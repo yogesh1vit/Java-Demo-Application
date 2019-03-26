@@ -28,7 +28,7 @@ node{
        stage('Copying Deployment yaml') {  
              def cmdTest='pwd'
            sshagent(['1022304b-5e99-420d-82de-677aaa255a08']) {  
-                 sh "ssh root@104.211.188.12 ${cmdTest}"
+                 sh "ssh ubuntu@104.211.188.12 ${cmdTest}"
                //sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
       }
