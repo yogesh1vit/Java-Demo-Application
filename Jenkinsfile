@@ -27,7 +27,7 @@ node{
       }
        stage('Copying Deployment yaml') {     
            sshagent(['k8server']) {            
-               sh 'scp -o StrictHostKeyChecking=no deployment.yaml ubuntu@104.211.188.12'         
+               sh 'scp -o StrictHostKeyChecking=no deployment.yaml ubuntu@104.211.188.12:/home/ubuntu'         
            }
       }
       stage('Deploy'){        
