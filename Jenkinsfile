@@ -27,12 +27,12 @@ node{
       }
        stage('Copying Deployment yaml') {     
            sshagent(['k8server']) {            
-               sh 'scp -o StrictHostKeyChecking=no deployment.yaml ubuntu@104.211.188.12:/home/ubuntu'         
+               sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
       }
       stage('Deploy'){        
             //def dockerContainerName = 'javademo-$BUILD_NUMBER'
-            def k8Apply= "kubectl apply -f deployment-file-name.yaml"         
+            def k8Apply= "kubectl apply -f deployment.yaml"         
             sshagent(['k8server']) { 
               sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${k8Apply}"                   
          }
