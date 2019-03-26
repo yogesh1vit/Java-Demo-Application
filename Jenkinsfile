@@ -26,7 +26,7 @@ node{
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
        stage('Copying Deployment yaml') {     
-           sshagent(['k8server']) {  
+           sshagent(['1022304b-5e99-420d-82de-677aaa255a08']) {  
                  sh 'pwd'
                //sh 'scp deployment.yaml ubuntu@104.211.188.12'         
            }
