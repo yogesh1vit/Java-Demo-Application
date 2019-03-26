@@ -34,7 +34,7 @@ node{
             //def dockerContainerName = 'javademo-$BUILD_NUMBER'
             def k8Apply= "kubectl apply -f deployment.yaml"         
             sshagent(['k8server']) { 
-              sh "ssh -o StrictHostKeyChecking=no ubuntu@104.211.188.12 ${k8Apply}"                   
+              sh "ssh ubuntu@104.211.188.12 ${k8Apply}"                   
          }
       }
      
