@@ -3,7 +3,7 @@ node{
       stage('Checkout'){
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
       }
-  
+  /*
       stage ('Test'){
          def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'    
          sh "${mvnHome}/bin/mvn verify; sleep 3"
@@ -24,7 +24,7 @@ node{
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
-      }
+      }*/
       
       stage ('copy'){
             sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.165:/home/ubuntu"
