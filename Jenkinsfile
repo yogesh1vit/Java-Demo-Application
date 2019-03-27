@@ -27,7 +27,7 @@ node{
       }
       
       stage ('copy'){
-            sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu"
+            sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.165:/home/ubuntu"
              /*withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
       sh 'sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu'
       }*/
