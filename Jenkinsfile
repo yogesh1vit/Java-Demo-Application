@@ -25,7 +25,11 @@ node{
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
       }
-      stage('Copy deployment file')
+      
+      stage ('copy'){
+      sh 'scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu'
+      }
+     /* stage('Copy deployment file')
       {
          withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
               // sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu"
@@ -41,6 +45,6 @@ node{
                
          }
        }
-       
+       */
    
 }
