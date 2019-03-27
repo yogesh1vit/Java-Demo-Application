@@ -24,7 +24,7 @@ node{
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
         sh 'docker push rajnikhattarrsinha/javademoapp3:1.0.0'
-      }*/
+      }
       
       stage ('copy'){
             sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.165:/home/ubuntu"
@@ -39,6 +39,7 @@ node{
               sh "sshpass -p ${k8PWD} StrictHostKeyChecking=no scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu "
          }
       }
+       */
       stage('Deploy')
       {
          def k8Apply= "kubectl apply -f deployment.yaml" 
