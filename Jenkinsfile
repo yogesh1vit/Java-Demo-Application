@@ -16,14 +16,14 @@ node{
       }
       
        stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javademoapp4:1.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/javademoapp5:1.0.0 .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/javademoapp4:1.0.0'
+        sh 'docker push rajnikhattarrsinha/javademoapp5:1.0.0'
       }
       
       stage ('copy'){                        
