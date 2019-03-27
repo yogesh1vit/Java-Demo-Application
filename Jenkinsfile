@@ -40,19 +40,20 @@ node{
          }
       }
        */
-      stage ('copy'){
-            sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu"
-            //sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.165:/home/ubuntu"
+      /*stage ('copy'){
+            //sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu"
+            sh "sshpass -p 'Alpha#757575' scp -r deployment.yaml ubuntu@104.211.186.165:/home/ubuntu"
              /*withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
       sh 'sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.186.199:/home/ubuntu'
       }*/
-      }
+      }*/
       stage('Deploy')
       {
          def k8Apply= "kubectl apply -f deployment.yaml" 
          withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
                //sh "sshpass -p ${k8PWD} ssh ubuntu@104.211.186.199 ${k8Apply}"
-               sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.186.199 ${k8Apply}"
+             //  sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.186.199 ${k8Apply}"
+               sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.186.165 ${k8Apply}"
                
          }
        }
