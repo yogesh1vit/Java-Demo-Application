@@ -2,9 +2,8 @@ node{
       
       stage('Checkout'){
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
-         sh "sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
       }
-      /*stage('Build'){
+      stage('Build'){
          // Get maven home path and build
          def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'   
          sh "${mvnHome}/bin/mvn package"
@@ -23,7 +22,7 @@ node{
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
         sh 'docker push rajnikhattarrsinha/javademoapp6:$BUILD_NUMBER'
-       // sh "sed 's/2.0.0/$BUILD_NUMBER/' Dockerfile"
+        sh "sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
       }
            
       stage ('copy'){                        
