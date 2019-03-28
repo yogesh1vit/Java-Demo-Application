@@ -14,14 +14,14 @@ node{
          sh "${mvnHome}/bin/mvn verify; sleep 3"
       }
        stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javademoapp$BUILD_NUMBER:3.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/javademoapp:$BUILD_NUMBER .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/javademoapp$BUILD_NUMBER:3.0.0'
+        sh 'docker push rajnikhattarrsinha/javademoapp:$BUILD_NUMBER'
         //sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml
        sh "sed -i.bak 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
       }
