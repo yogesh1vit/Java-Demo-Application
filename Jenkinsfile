@@ -38,6 +38,4 @@ node{
             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.190.132 ${k8Apply}"
          }
        }
-       */
-
-}
+  }
