@@ -22,14 +22,16 @@ node{
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
         sh 'docker push rajnikhattarrsinha/javademoapp6:$BUILD_NUMBER'
-        sh "sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
+        //sh "sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
       }
            
-      stage ('copy'){                        
+      stage ('copy'){    
+            def textReplace="sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
           withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.190.132"  
-             sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.190.132:/home/ubuntu"          
-         }
+             sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.190.132:/home/ubuntu"  
+             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.190.132 ${textReplace}" 
+          }
       }
       
       stage('Deploy'){
