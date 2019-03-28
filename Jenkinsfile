@@ -8,7 +8,7 @@ node{
              def dockerContainerName = 'javademo-$BUILD_NUMBER'
              def dockerRun="sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademoapp5:1.0.0"
              sh "sshpass -p 'UbuntuUbuntu@123' ssh -o StrictHostKeyChecking=no ubuntu@104.211.166.183"  
-             sh "sshpass  -o StrictHostKeyChecking=no ubuntu@104.211.166.183 ${dockerRun}"
+             sh "sshpass -p 'UbuntuUbuntu@123' ssh -o StrictHostKeyChecking=no ubuntu@104.211.166.183 ${dockerRun}"
             //def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademo:2.0.0"         
             //sshagent(['dockerdeployserver2']) {
             //  sh "ssh -o StrictHostKeyChecking=no ubuntu@18.215.68.236 ${dockerRun}"
