@@ -14,7 +14,7 @@ node{
             //  sh "ssh -o StrictHostKeyChecking=no ubuntu@18.215.68.236 ${dockerRun}"
                    
          }
-      }
+      //}
       
    /*   stage('Build'){
          // Get maven home path and build
