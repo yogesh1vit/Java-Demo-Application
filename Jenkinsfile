@@ -14,7 +14,7 @@ node{
          sh "${mvnHome}/bin/mvn verify; sleep 3"
       }
        stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javademoapp6:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/javademoapp6:$BUILD_NUMBER .'
       }  
    
       stage('Publish Docker Image'){
