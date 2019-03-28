@@ -3,10 +3,26 @@ node{
       stage('Checkout'){
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
       }
+      stage('Build'){
+         // Get maven home path and build
+         def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'   
+         sh "${mvnHome}/bin/mvn package"
+      }  
       
-      stage('Run docker image'){        
+       
+       stage('Build Docker Image'){
+         sh 'docker build -t rajnikhattarrsinha/javademoapp6:1.0.0 .'
+      }  
+   
+      stage('Publish Docker Image'){
+         withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
+              sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
+         }
+        sh 'docker push rajnikhattarrsinha/javademoapp6:1.0.0'
+      }
+     /* stage('Run docker image'){        
              def dockerContainerName = 'javademo-$BUILD_NUMBER'
-             def dockerRun="sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademoapp5:1.0.0"
+             def dockerRun="sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademoapp6:1.0.0"
              sh "sshpass -p 'UbuntuUbuntu@123' ssh -o StrictHostKeyChecking=no ubuntu@104.211.166.183"  
              sh "sshpass -p 'UbuntuUbuntu@123' ssh -o StrictHostKeyChecking=no ubuntu@104.211.166.183 ${dockerRun}"
             //def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javademo:2.0.0"         
@@ -14,6 +30,7 @@ node{
             //  sh "ssh -o StrictHostKeyChecking=no ubuntu@18.215.68.236 ${dockerRun}"
                    
          }
+         */
       //}
       
    /*   stage('Build'){
