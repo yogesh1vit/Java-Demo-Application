@@ -2,7 +2,7 @@ node{
       
       stage('Checkout'){
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
-         sh "sed 's/2.0.0/$BUILD_NUMBER/' deployment.yaml"
+         sh "sed 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
       }
       /*stage('Build'){
          // Get maven home path and build
