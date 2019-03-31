@@ -29,14 +29,14 @@ node{
       stage ('Copy Deployment file'){    
            withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.190.132"  
-             sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.190.132:/home/ubuntu" 
+             sh "sshpass -p ${k8PWD} scp -r deployment.yaml ubuntu@104.211.182.158:/home/ubuntu" 
            }
       }
       
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
          withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
-            sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.190.132 ${k8Apply}"
+            sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.182.158 ${k8Apply}"
          }
        }
   }
