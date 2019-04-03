@@ -1,6 +1,6 @@
 node{
       
-      stage('Checkout'){
+      stage('SCM Checkout'){
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
       }
       
@@ -28,7 +28,7 @@ node{
         sh "sed -i.bak 's/#JOB-NAME#/$JOB_NAME/' deployment.yaml"
       }
            
-      /*
+    
       // ********* For Azure Cluster**************************
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
@@ -38,9 +38,9 @@ node{
           sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no ubuntu@104.211.177.6 ${k8Apply}"
          }
        }
-       */
+       
       
-      
+      /*  
       // ********* For AWS Cluster**************************
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
@@ -50,4 +50,5 @@ node{
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@34.204.196.136 ${k8Apply}"
          }
        }
+      */
   }
