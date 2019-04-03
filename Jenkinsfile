@@ -44,7 +44,7 @@ node{
       // ********* For AWS Cluster**************************
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
-         withCredentials([string(credentialsId: 'k8pwd', variable: 'k8PWD')]) {
+         withCredentials([string(credentialsId: 'k8pwdrajni', variable: 'k8PWD')]) {
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@34.204.196.136"  
              sh "sshpass -p ${k8PWD} scp -r deployment.yaml devops@34.204.196.136:/home/devops" 
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@34.204.196.136 ${k8Apply}"
