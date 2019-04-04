@@ -4,7 +4,7 @@ node{
          git 'https://github.com/rajnikhattarrsinha/Java-Demo-Application'
       }
       
-      /*stage('Build'){
+      stage('Build'){
          // Get maven home path and build
          def mvnHome =  tool name: 'Maven 3.5.4', type: 'maven'   
          sh "${mvnHome}/bin/mvn package -Dmaven.test.skip=true"
@@ -27,7 +27,7 @@ node{
         sh "sed -i.bak 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
         sh "sed -i.bak 's/#JOB-NAME#/$JOB_NAME/' deployment.yaml"
       }
-        /*    
+          
     
       // ********* For Azure Cluster**************************
       stage('Deploy'){
@@ -38,8 +38,9 @@ node{
           sh "sshpass -p ${k8PWD} ssh  -o StrictHostKeyChecking=no ubuntu@104.211.154.236 ${k8Apply}"
          }
        }
+        /* 
        
-      */
+    
        
       // ********* For AWS Cluster**************************
       stage('Deploy'){
@@ -50,5 +51,5 @@ node{
              sh "sshpass -p ${k8PWD} ssh -t -t -o StrictHostKeyChecking=no devops@3.95.139.151 ${k8Apply}"
          }
        }
-      
+        */
   }
