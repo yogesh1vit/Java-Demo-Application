@@ -45,7 +45,7 @@ node{
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
          withCredentials([string(credentialsId: 'k8pwdrajni', variable: 'k8PWD')]) {
-             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@3.95.139.151"  
+             sh "sshpass -p ${k8PWD} ssh -t -t -o StrictHostKeyChecking=no devops@3.95.139.151"  
              sh "sshpass -p ${k8PWD} scp -r deployment.yaml devops@3.95.139.151:/home/devops" 
              sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@3.95.139.151 ${k8Apply}"
          }
