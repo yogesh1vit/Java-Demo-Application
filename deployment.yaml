@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rajni-deployment
+  name: rajni3-deployment
 spec:
   selector:
     matchLabels:
-      run: rajni-deployment
+      run: rajni3-deployment
   replicas: 2
   template:
     metadata:
       labels:
-        run: rajni-deployment
+        run: rajni3-deployment
     spec:
       containers:
-      - name: rajni-deployment
+      - name: rajni3-deployment
         image: rajnikhattarrsinha/javademoapp_#JOB-NAME#:#BUILD-NUMBER#
         ports:
         - containerPort: 8080
@@ -21,13 +21,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rajni-deployment
+  name: rajni3-deployment
   labels:
-    run: rajni-deployment
+    run: rajni3-deployment
 spec:
   type: NodePort
   ports:
   - port: 8080
     protocol: TCP
   selector:
-    run: rajni-deployment
+    run: rajni3-deployment
