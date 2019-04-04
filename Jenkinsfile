@@ -27,7 +27,7 @@ node{
         sh "sed -i.bak 's/#BUILD-NUMBER#/$BUILD_NUMBER/' deployment.yaml"
         sh "sed -i.bak 's/#JOB-NAME#/$JOB_NAME/' deployment.yaml"
       }
-           
+        /*    
     
       // ********* For Azure Cluster**************************
       stage('Deploy'){
@@ -39,16 +39,16 @@ node{
          }
        }
        
-      
-      /*  
+      */
+       
       // ********* For AWS Cluster**************************
       stage('Deploy'){
          def k8Apply= "kubectl apply -f deployment.yaml" 
          withCredentials([string(credentialsId: 'k8pwdrajni', variable: 'k8PWD')]) {
-             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@34.204.196.136"  
-             sh "sshpass -p ${k8PWD} scp -r deployment.yaml devops@34.204.196.136:/home/devops" 
-             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@34.204.196.136 ${k8Apply}"
+             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@3.95.139.151"  
+             sh "sshpass -p ${k8PWD} scp -r deployment.yaml devops@3.95.139.151:/home/devops" 
+             sh "sshpass -p ${k8PWD} ssh -o StrictHostKeyChecking=no devops@3.95.139.151 ${k8Apply}"
          }
        }
-      */
+      
   }
